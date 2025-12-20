@@ -30,13 +30,13 @@ app.get('/smsv2/attack', async (req, res) => {
     const data = await hitAll(number);
     res.status(200).json({
       status: true,
-      msg: 'Succesfully sumited',
+      message: 'Succesfully sumited',
       results: data,
     });
   } catch(err) {
     res.status(500).json({
       status: false,
-      msg: 'Internal server error'
+      message: 'Internal server error'
     });
   }
 });
@@ -49,25 +49,25 @@ function numberCheck(number) {
   if(!number) {
     return {
       status: false,
-      msg: 'empty query'
+      message: 'empty query'
     };
   }
   if(!/^01\d{9}$/.test(number)) {
     return {
       status: false,
-      msg: 'Invalid number format'
+      message: 'Invalid number format'
     };
   }
   const blocked = ["01306995635"];
   if(blocked.includes(number)) {
     return {
       status: false,
-      msg: 'This number is blocked'
+      message: 'This number is blocked'
     };
   }
   return {
     status: true,
-    msg: 'Number accepted'
+    message: 'Number accepted'
   };
 }
 
