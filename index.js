@@ -27,7 +27,7 @@ app.get('/smsv2/attack', async (req, res) => {
     if(!isNum.status) {
       return res.status(400).json(isNum);
     }
-    const data =  hitAll(number);
+    const data = await hitAll(number);
     res.status(200).json({
       status: true,
       msg: 'Succesfully sumited',
@@ -76,7 +76,7 @@ async function hitAll(number) {
   let count = 0;
 
   for (const api of apis) {
-    const data =  new Promise((resolve) => {
+    const data = new Promise((resolve) => {
       api(
         { query: { phone: number } },
         {
